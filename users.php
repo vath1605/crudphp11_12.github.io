@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,12 +30,23 @@
                 </tr>
             </thead>
             <tbody>
+                <?php 
+                    include 'db.php';
+                    $query = "SELECT * FROM tbl_user";
+                    try {
+                        $res = mysqli_query($conn,$query);
+                    } catch (mysqli_sql_exception $e) {
+                        echo $e->getMessage();
+                    }
+                    if(mysqli_num_rows($res)>0){
+                        foreach($res as $row){
+                ?>
                 <tr>
-                    <td>1</td>
-                    <td>Ko Ko</td>
-                    <td>koko123@gmail.com</td>
-                    <td>12345</td>
-                    <td>...</td>
+                    <td><?= $row['id'] ?></td>
+                    <td><?= $row['name'] ?></td>
+                    <td><?= $row['email'] ?></td>
+                    <td><?= $row['pass'] ?></td>
+                    <td><?= $row['cr_date'] ?></td>
                     <td>
                         <div class="d-flex align-items-center justify-content-center gap-2">
                             <a href="#" class="btn d-flex justify-content-center align-items-center gap-1 btn-warning">
@@ -50,7 +62,18 @@
                             Delete</a>
                         </div>
                     </td>
-                </tr>
+                </tr
+                <?php } 
+                    }else{
+                        ?>
+                        <tr>
+                            <td colspan="7" class="p-0">
+                                <p class="text-secondary mt-2">No data found.</p>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                ?>
             </tbody>
         </table>
     </main>

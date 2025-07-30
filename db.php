@@ -14,8 +14,4 @@
     }catch(mysqli_sql_exception $e){
         echo $e->getMessage();
     }
-
-    if($conn){
-        echo "Successfully.";
-    }
 ?>

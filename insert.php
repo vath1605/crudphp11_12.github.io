@@ -9,7 +9,7 @@
         $cpass = $_POST['cpass'];
         if($name != '' && $email != '' && $pass != '' && $cpass != ''){
             if($pass == $cpass){
-            $query = "INSERT INTO tbl_user(name,email,pass) VALUES ('$name','$email',MD5('$pass'))";
+            $query = "INSERT INTO tbl_user(name,email,pass) VALUES ('$name','$email','$pass')";
             try {
                 $res = mysqli_query($conn,$query);
             } catch (mysqli_sql_exception $e) {
